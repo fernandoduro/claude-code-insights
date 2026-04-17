@@ -119,16 +119,16 @@
 <body>
   <div class="container">
     <h1>Claude Code Insights</h1>
-    <p class="subtitle">791 messages across 84 sessions (167 total) | 2026-01-14 to 2026-02-13</p>
+    <p class="subtitle">3,312 messages across 292 sessions (362 total) | 2026-01-14 to 2026-04-17</p>
 
     
     <div class="at-a-glance">
       <div class="glance-title">At a Glance</div>
       <div class="glance-sections">
-        <div class="glance-section"><strong>What's working:</strong> You've built a genuinely impressive multi-agent PR review workflow that turns Claude into a parallel review committee — security, architecture, testing all analyzed in one pass. Beyond reviews, you're running full issue-to-PR pipelines in single sessions (like your ClickHouse data loss fix that went from investigation through Docker validation to PR creation), and your disciplined use of structured task tracking for complex multi-system debugging across MySQL, ClickHouse, and PHP shows a mature approach to managing Claude through hard problems. <a href="#section-wins" class="see-more">Impressive Things You Did →</a></div>
-        <div class="glance-section"><strong>What's hindering you:</strong> On Claude's side, the biggest issue is premature solution-jumping — Claude frequently proposes fixes before understanding the problem, leading to wrong approaches that eat up your time with back-and-forth corrections, especially during debugging sessions. On your side, the PR review artifact collection script keeps breaking on the same GitHub Projects Classic deprecation warning session after session, which is a solvable infrastructure issue that's creating unnecessary drag on your most frequent workflow. <a href="#section-friction" class="see-more">Where Things Go Wrong →</a></div>
-        <div class="glance-section"><strong>Quick wins to try:</strong> You could formalize your multi-agent PR review pattern as a custom skill (a reusable markdown prompt triggered via `/command`) that bakes in graceful error handling for the GitHub API issues and standardizes the review structure — no more manual recovery steps. Also consider adding a hook that auto-runs your linting and test suite before Claude commits, which would catch the phplint and test failures that keep requiring extra iterations. <a href="#section-features" class="see-more">Features to Try →</a></div>
-        <div class="glance-section"><strong>Ambitious workflows:</strong> As models get more capable, your debugging sessions (your most common activity) should become single-prompt dispatches: describe the bug, and Claude autonomously reproduces it in Docker, bisects the cause, iterates fixes against your test suite, and opens the PR without needing your course corrections mid-session. Your PR review pipeline is also primed to become fully self-healing — sub-agents that gracefully recover from API failures, never stall on artifact collection, and deliver consolidated verdicts reliably enough to run unattended on every PR. <a href="#section-horizon" class="see-more">On the Horizon →</a></div>
+        <div class="glance-section"><strong>What's working:</strong> You&apos;ve built an impressively complete PR lifecycle workflow — review, fix, verify, communicate — that you routinely execute in single sessions with high success rates. Your ability to layer context onto reviews by cross-referencing epics, stacked PRs, and merge order produces genuinely useful findings, not just surface-level nits. You&apos;re also one of the more effective users at recovering when Claude goes sideways, especially in complex git/monorepo scenarios. <a href="#section-wins" class="see-more">Impressive Things You Did →</a></div>
+        <div class="glance-section"><strong>What's hindering you:</strong> On Claude&apos;s side, the biggest issue is wrong initial approaches — Claude frequently picks the wrong branch, wrong test strategy, wrong subsystem to investigate, or wrong environment to run commands in, and you end up spending real time redirecting. On your side, the monorepo setup (Sail, submodules, worktrees across sub-repos, stacked PR chains) is complex enough that Claude can&apos;t reliably infer the right context without explicit guidance, and it seems like that context isn&apos;t always provided up front or codified in project instructions. <a href="#section-friction" class="see-more">Where Things Go Wrong →</a></div>
+        <div class="glance-section"><strong>Quick wins to try:</strong> Turn your PR review workflow into a custom slash-command skill — you do it constantly and the steps are consistent enough to standardize, which would also reduce wrong-approach friction by baking in the right defaults. Also, set up hooks or update your CLAUDE.md to enforce environment constraints (e.g., always use Sail for artisan commands, always check sub-repo worktrees not just root) so Claude stops making the same infrastructure mistakes. <a href="#section-features" class="see-more">Features to Try →</a></div>
+        <div class="glance-section"><strong>Ambitious workflows:</strong> As models get more reliable at multi-step execution, your PR review → fix → test → push → reply workflow is a prime candidate for full autonomy — one command that runs the entire pipeline without you steering between steps. Longer term, parallel sub-agents that each hold context for a specific sub-repo in your monorepo could eliminate the branch confusion and worktree mishaps that plague your git operations today, letting you kick off coordinated cross-repo work as a single task. <a href="#section-horizon" class="see-more">On the Horizon →</a></div>
       </div>
     </div>
     
@@ -145,11 +145,11 @@
     </nav>
 
     <div class="stats-row">
-      <div class="stat"><div class="stat-value">791</div><div class="stat-label">Messages</div></div>
-      <div class="stat"><div class="stat-value">+24,090/-2,131</div><div class="stat-label">Lines</div></div>
-      <div class="stat"><div class="stat-value">229</div><div class="stat-label">Files</div></div>
-      <div class="stat"><div class="stat-value">23</div><div class="stat-label">Days</div></div>
-      <div class="stat"><div class="stat-value">34.4</div><div class="stat-label">Msgs/Day</div></div>
+      <div class="stat"><div class="stat-value">3,312</div><div class="stat-label">Messages</div></div>
+      <div class="stat"><div class="stat-value">+74,023/-9,733</div><div class="stat-label">Lines</div></div>
+      <div class="stat"><div class="stat-value">1109</div><div class="stat-label">Files</div></div>
+      <div class="stat"><div class="stat-value">65</div><div class="stat-label">Days</div></div>
+      <div class="stat"><div class="stat-value">51</div><div class="stat-label">Msgs/Day</div></div>
     </div>
 
     
@@ -158,42 +158,42 @@
       
         <div class="project-area">
           <div class="area-header">
-            <span class="area-name">PR Reviews &amp; Code Review Automation</span>
-            <span class="area-count">~17 sessions</span>
+            <span class="area-name">PR Reviews &amp; Code Quality</span>
+            <span class="area-count">~45 sessions</span>
           </div>
-          <div class="area-desc">Extensive use of Claude Code for reviewing pull requests across multiple repositories, using a multi-agent review pattern that analyzes architecture, security, best practices, and testing in parallel. Claude collected PR artifacts via GitHub API (often hitting GraphQL deprecation issues requiring manual fallback) and delivered consolidated review verdicts with actionable findings. This was the most frequent recurring workflow, covering PRs for ClickHouse fixes, Laravel upgrades, PHP changes, and documentation updates.</div>
+          <div class="area-desc">Extensive use of Claude Code for structured PR reviews with cross-referencing against epics, sub-tasks, and stacked PRs. Claude performed multi-pass reviews, posted inline findings, drafted review responses to colleagues, and directly implemented must-fix code changes on PR branches. This was the dominant workflow, often involving iterative refinement of review tone, factual accuracy, and finding severity.</div>
         </div>
       
         <div class="project-area">
           <div class="area-header">
-            <span class="area-name">ClickHouse &amp; Data Pipeline Debugging</span>
-            <span class="area-count">~12 sessions</span>
+            <span class="area-name">Feature Implementation &amp; Bug Fixes</span>
+            <span class="area-count">~40 sessions</span>
           </div>
-          <div class="area-desc">Debugging and fixing data integrity issues involving ClickHouse event ingestion, revenue attribution discrepancies between MySQL and ClickHouse, and aggregation bugs. Claude helped implement a watermark fix for data loss, wrote integration tests, addressed PR review feedback on deduplication and N+1 queries, and investigated revenue/orders data discrepancies. Sessions involved heavy use of SQL queries, Docker-based testing, and cross-referencing multiple data stores.</div>
+          <div class="area-desc">Claude Code was used to implement features and fixes across a full-stack monorepo (PHP/Laravel backend, JavaScript frontend) including import worker graceful shutdown, CAPTCHA configuration, cookie lifetime changes, revenue labeling standardization, Failed status with retry UI, and database constraint removals. Work typically followed a pattern of planning, multi-file edits, test writing, PR creation, and CI fix-up, with heavy use of Bash and Edit tools.</div>
         </div>
       
         <div class="project-area">
           <div class="area-header">
-            <span class="area-name">PHP Application Bug Fixes &amp; Feature Development</span>
+            <span class="area-name">Git Operations &amp; Monorepo Management</span>
+            <span class="area-count">~25 sessions</span>
+          </div>
+          <div class="area-desc">Significant time spent on git workflow tasks within a monorepo structure containing submodules and worktrees. Claude resolved merge conflicts, managed worktree creation/cleanup across sub-repos, handled branch tracking, forward merges across PR chains, and submodule pointer conflicts. Friction frequently arose from worktree path issues, wrong branch contexts, and submodule navigation challenges.</div>
+        </div>
+      
+        <div class="project-area">
+          <div class="area-header">
+            <span class="area-name">Debugging &amp; Production Issues</span>
             <span class="area-count">~20 sessions</span>
           </div>
-          <div class="area-desc">Core product development work on a PHP application including fixing production 500 errors, broadcast recipient count bugs, segment filter issues, journey worker processing, and implementing features like separate attribution windows and view-through vs click-through tracking. Claude navigated legacy codebases, debugged database configuration issues, fixed PHP 5.6/8 compatibility problems, and created PRs with tests. Sessions often required iterative debugging with multiple course corrections due to complex legacy architecture.</div>
+          <div class="area-desc">Claude Code assisted with diagnosing production issues including API timeouts, silently dying import workers (identifying missing EnsureConnection as root cause), database migration errors, and Sentry-reported bugs. Debugging sessions leveraged Bash and Read tools heavily for log analysis and codebase investigation, though some sessions were interrupted before fixes were fully implemented.</div>
         </div>
       
         <div class="project-area">
           <div class="area-header">
-            <span class="area-name">Documentation, Planning &amp; Project Management</span>
-            <span class="area-count">~18 sessions</span>
+            <span class="area-name">Tooling, Automation &amp; Project Planning</span>
+            <span class="area-count">~15 sessions</span>
           </div>
-          <div class="area-desc">Claude assisted with maintaining and correcting product documentation (especially revenue attribution docs), creating GitHub issues from support conversations, updating quarterly planning dashboards, analyzing database performance priorities, and managing project workflows. This included configuring Claude Code itself with CLAUDE.md files, skills, hooks, and MCP servers, as well as automating planner updates with activity stats and building Google Drive sync for documentation.</div>
-        </div>
-      
-        <div class="project-area">
-          <div class="area-header">
-            <span class="area-name">DevOps, Infrastructure &amp; Developer Tooling</span>
-            <span class="area-count">~17 sessions</span>
-          </div>
-          <div class="area-desc">Infrastructure and tooling work including creating CLI shortcuts for production MySQL/ClickHouse access via bastion tunnels, setting up git worktrees for parallel branch work, diagnosing full disk issues on production MySQL servers, fixing pre-commit phplint failures, debugging flaky parallel test failures from zombie mocks, and implementing license server call-home bypasses. Claude helped build developer productivity tools and resolve environment-level issues that blocked other work.</div>
+          <div class="area-desc">Claude Code was used to maintain and fix internal tooling such as session-renaming scripts, insights report publishing to GitHub Pages, quarterly planner updates, and clipboard integration for WSL environments. It also helped with GitHub issue creation, PR description generation, and skill/command documentation. These sessions often hit edge cases in scripts requiring iterative debugging.</div>
         </div>
       
     </div>
@@ -203,34 +203,34 @@
       <div class="chart-card">
         <div class="chart-title">What You Wanted</div>
         <div class="bar-row">
-        <div class="bar-label">Debugging</div>
-        <div class="bar-track"><div class="bar-fill" style="width:100%;background:#2563eb"></div></div>
-        <div class="bar-value">33</div>
-      </div>
-<div class="bar-row">
         <div class="bar-label">Code Review</div>
-        <div class="bar-track"><div class="bar-fill" style="width:51.515151515151516%;background:#2563eb"></div></div>
-        <div class="bar-value">17</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:#2563eb"></div></div>
+        <div class="bar-value">35</div>
       </div>
 <div class="bar-row">
-        <div class="bar-label">Feature Implementation</div>
-        <div class="bar-track"><div class="bar-fill" style="width:39.39393939393939%;background:#2563eb"></div></div>
-        <div class="bar-value">13</div>
-      </div>
-<div class="bar-row">
-        <div class="bar-label">Bug Fix</div>
-        <div class="bar-track"><div class="bar-fill" style="width:33.33333333333333%;background:#2563eb"></div></div>
-        <div class="bar-value">11</div>
-      </div>
-<div class="bar-row">
-        <div class="bar-label">Pr Creation</div>
-        <div class="bar-track"><div class="bar-fill" style="width:33.33333333333333%;background:#2563eb"></div></div>
-        <div class="bar-value">11</div>
+        <div class="bar-label">Debugging</div>
+        <div class="bar-track"><div class="bar-fill" style="width:97.14285714285714%;background:#2563eb"></div></div>
+        <div class="bar-value">34</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Git Operations</div>
-        <div class="bar-track"><div class="bar-fill" style="width:24.242424242424242%;background:#2563eb"></div></div>
-        <div class="bar-value">8</div>
+        <div class="bar-track"><div class="bar-fill" style="width:62.857142857142854%;background:#2563eb"></div></div>
+        <div class="bar-value">22</div>
+      </div>
+<div class="bar-row">
+        <div class="bar-label">Bug Fix</div>
+        <div class="bar-track"><div class="bar-fill" style="width:60%;background:#2563eb"></div></div>
+        <div class="bar-value">21</div>
+      </div>
+<div class="bar-row">
+        <div class="bar-label">Feature Implementation</div>
+        <div class="bar-track"><div class="bar-fill" style="width:45.714285714285715%;background:#2563eb"></div></div>
+        <div class="bar-value">16</div>
+      </div>
+<div class="bar-row">
+        <div class="bar-label">Pr Creation</div>
+        <div class="bar-track"><div class="bar-fill" style="width:40%;background:#2563eb"></div></div>
+        <div class="bar-value">14</div>
       </div>
       </div>
       <div class="chart-card">
@@ -238,32 +238,32 @@
         <div class="bar-row">
         <div class="bar-label">Bash</div>
         <div class="bar-track"><div class="bar-fill" style="width:100%;background:#0891b2"></div></div>
-        <div class="bar-value">1764</div>
+        <div class="bar-value">11363</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Read</div>
-        <div class="bar-track"><div class="bar-fill" style="width:44.614512471655324%;background:#0891b2"></div></div>
-        <div class="bar-value">787</div>
+        <div class="bar-track"><div class="bar-fill" style="width:28.407990847487458%;background:#0891b2"></div></div>
+        <div class="bar-value">3228</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Edit</div>
-        <div class="bar-track"><div class="bar-fill" style="width:24.09297052154195%;background:#0891b2"></div></div>
-        <div class="bar-value">425</div>
+        <div class="bar-track"><div class="bar-fill" style="width:18.24342163161137%;background:#0891b2"></div></div>
+        <div class="bar-value">2073</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Grep</div>
-        <div class="bar-track"><div class="bar-fill" style="width:21.598639455782312%;background:#0891b2"></div></div>
-        <div class="bar-value">381</div>
-      </div>
-<div class="bar-row">
-        <div class="bar-label">TodoWrite</div>
-        <div class="bar-track"><div class="bar-fill" style="width:12.528344671201813%;background:#0891b2"></div></div>
-        <div class="bar-value">221</div>
+        <div class="bar-track"><div class="bar-fill" style="width:10.727800756842383%;background:#0891b2"></div></div>
+        <div class="bar-value">1219</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Write</div>
-        <div class="bar-track"><div class="bar-fill" style="width:8.673469387755102%;background:#0891b2"></div></div>
-        <div class="bar-value">153</div>
+        <div class="bar-track"><div class="bar-fill" style="width:6.089941036698055%;background:#0891b2"></div></div>
+        <div class="bar-value">692</div>
+      </div>
+<div class="bar-row">
+        <div class="bar-label">TodoWrite</div>
+        <div class="bar-track"><div class="bar-fill" style="width:5.966734137111678%;background:#0891b2"></div></div>
+        <div class="bar-value">678</div>
       </div>
       </div>
     </div>
@@ -274,55 +274,60 @@
         <div class="bar-row">
         <div class="bar-label">Markdown</div>
         <div class="bar-track"><div class="bar-fill" style="width:100%;background:#10b981"></div></div>
-        <div class="bar-value">380</div>
+        <div class="bar-value">1912</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Shell</div>
-        <div class="bar-track"><div class="bar-fill" style="width:5.263157894736842%;background:#10b981"></div></div>
-        <div class="bar-value">20</div>
-      </div>
-<div class="bar-row">
-        <div class="bar-label">JavaScript</div>
-        <div class="bar-track"><div class="bar-fill" style="width:2.1052631578947367%;background:#10b981"></div></div>
-        <div class="bar-value">8</div>
+        <div class="bar-track"><div class="bar-fill" style="width:16.056485355648537%;background:#10b981"></div></div>
+        <div class="bar-value">307</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">JSON</div>
-        <div class="bar-track"><div class="bar-fill" style="width:1.3157894736842104%;background:#10b981"></div></div>
-        <div class="bar-value">5</div>
+        <div class="bar-track"><div class="bar-fill" style="width:9.414225941422593%;background:#10b981"></div></div>
+        <div class="bar-value">180</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">YAML</div>
-        <div class="bar-track"><div class="bar-fill" style="width:0.2631578947368421%;background:#10b981"></div></div>
-        <div class="bar-value">1</div>
+        <div class="bar-track"><div class="bar-fill" style="width:2.2489539748953975%;background:#10b981"></div></div>
+        <div class="bar-value">43</div>
+      </div>
+<div class="bar-row">
+        <div class="bar-label">JavaScript</div>
+        <div class="bar-track"><div class="bar-fill" style="width:1.5167364016736402%;background:#10b981"></div></div>
+        <div class="bar-value">29</div>
+      </div>
+<div class="bar-row">
+        <div class="bar-label">Python</div>
+        <div class="bar-track"><div class="bar-fill" style="width:0.889121338912134%;background:#10b981"></div></div>
+        <div class="bar-value">17</div>
       </div>
       </div>
       <div class="chart-card">
         <div class="chart-title">Session Types</div>
         <div class="bar-row">
-        <div class="bar-label">Iterative Refinement</div>
+        <div class="bar-label">Multi Task</div>
         <div class="bar-track"><div class="bar-fill" style="width:100%;background:#8b5cf6"></div></div>
-        <div class="bar-value">35</div>
+        <div class="bar-value">61</div>
       </div>
 <div class="bar-row">
-        <div class="bar-label">Multi Task</div>
-        <div class="bar-track"><div class="bar-fill" style="width:77.14285714285715%;background:#8b5cf6"></div></div>
-        <div class="bar-value">27</div>
+        <div class="bar-label">Iterative Refinement</div>
+        <div class="bar-track"><div class="bar-fill" style="width:90.1639344262295%;background:#8b5cf6"></div></div>
+        <div class="bar-value">55</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Single Task</div>
-        <div class="bar-track"><div class="bar-fill" style="width:51.42857142857142%;background:#8b5cf6"></div></div>
-        <div class="bar-value">18</div>
+        <div class="bar-track"><div class="bar-fill" style="width:73.77049180327869%;background:#8b5cf6"></div></div>
+        <div class="bar-value">45</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Quick Question</div>
-        <div class="bar-track"><div class="bar-fill" style="width:8.571428571428571%;background:#8b5cf6"></div></div>
-        <div class="bar-value">3</div>
+        <div class="bar-track"><div class="bar-fill" style="width:6.557377049180328%;background:#8b5cf6"></div></div>
+        <div class="bar-value">4</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Exploration</div>
-        <div class="bar-track"><div class="bar-fill" style="width:2.857142857142857%;background:#8b5cf6"></div></div>
-        <div class="bar-value">1</div>
+        <div class="bar-track"><div class="bar-fill" style="width:4.918032786885246%;background:#8b5cf6"></div></div>
+        <div class="bar-value">3</div>
       </div>
       </div>
     </div>
@@ -330,10 +335,10 @@
     
     <h2 id="section-usage">How You Use Claude Code</h2>
     <div class="narrative">
-      <p>You are a <strong>debugging-heavy, delegation-oriented power user</strong> who treats Claude Code as a semi-autonomous engineering partner across a complex multi-service stack (PHP, MySQL, ClickHouse, Laravel). With 84 sessions averaging over 9 messages each and a remarkable 1,164 hours of logged time, you clearly keep Claude running extensively in the background. Your dominant workflow pattern is <strong>handing off substantial, multi-step tasks</strong> — PR reviews, issue-to-PR pipelines, documentation audits, production debugging — and then <strong>course-correcting when Claude drifts off track</strong>. The 59 instances of &quot;wrong_approach&quot; friction tell a clear story: you let Claude take its first swing, but you're watching closely and redirect firmly when it goes astray. For example, when debugging a UUID re-identification bug, you had to provide &quot;several course corrections&quot; as Claude jumped to conclusions without fully understanding the architecture. Similarly, when fixing a broadcast recipient count bug, you rejected Claude's initial incomplete fix and steered it toward a better approach.</p>
-<p>Your tool usage reveals a <strong>read-heavy, investigation-first style</strong> — Bash (1,764 calls) and Read (787) dominate, with Grep (381) and TodoWrite (221) showing you rely on Claude to systematically search codebases and track progress through structured task lists. The heavy use of the Task tool (140 calls) combined with your custom PR review workflow using multi-agent sub-analyses shows you've <strong>built significant automation infrastructure around Claude Code</strong>, including custom slash commands, skills, hooks, and MCP server integration. You're not just using Claude — you've architected a workflow system on top of it. Your 17 code review sessions and 33 debugging sessions suggest you use Claude most for the cognitively expensive work of understanding existing systems rather than greenfield development.</p>
-<p>Despite the high friction count, your satisfaction skews heavily positive (188 &quot;likely_satisfied&quot; plus 31 &quot;satisfied&quot; vs. 41 &quot;dissatisfied&quot;), indicating you've <strong>calibrated your expectations realistically</strong> and accept iteration as part of the process. You're notably patient with multi-round debugging sessions but become visibly frustrated when Claude fails to follow explicit directions — like when it repeatedly generated invalid SQL or looked in the wrong directory for lint failures. Your 45 commits across the period show steady, meaningful output, and your goals span the full software lifecycle from production incident response to PR creation to documentation maintenance, marking you as someone who uses Claude Code as a <strong>force multiplier across every phase of engineering work</strong>, not just coding.</p>
-      <div class="key-insight"><strong>Key pattern:</strong> You operate as a hands-on technical lead who delegates complex, multi-step tasks to Claude and actively steers execution through frequent course corrections, treating wrong initial approaches as an expected cost of high-autonomy delegation.</div>
+      <p>You are a <strong>power user running a sophisticated, multi-repo monorepo workflow</strong> with Claude Code as your primary development partner across nearly 300 sessions over three months. Your interaction style is distinctly <strong>task-oriented and delegation-heavy</strong> — you routinely hand Claude complex, multi-step workflows like &quot;review this PR, implement the fixes, commit, push, and post the review response&quot; and expect end-to-end execution. With 11,363 Bash calls dwarfing all other tools, you clearly prefer Claude to <strong>execute directly in your environment</strong> rather than just advise, and the heavy use of TodoWrite (678 calls) shows you rely on Claude to track and manage structured plans. Your top goals — code review, debugging, git operations, bug fixes, and PR creation — paint a picture of someone who uses Claude as a <strong>full-cycle development collaborator</strong>, not just a code generator.</p>
+<p>Your interaction pattern is <strong>iterative but impatient with wrong directions</strong>. The friction data reveals a recurring theme: Claude frequently takes a wrong approach (107 instances), and you course-correct quickly — redirecting Claude from unit tests to real e2e tests, from cron job analysis to the actual People API, or from the wrong git branch to the correct one. You don&apos;t over-specify upfront; instead, you <strong>let Claude run and then steer when it drifts</strong>. This is evident in sessions where Claude initially ran migrations outside Docker, checked the wrong repos for worktrees, or drafted messages that were &quot;too robotic&quot; — in each case you gave pointed corrections and expected immediate recovery. Despite 75 dissatisfied moments and 19 frustrated ones, your overall success rate is exceptional (101 fully achieved, 42 mostly achieved out of 168 analyzed), suggesting you&apos;ve learned <strong>exactly when and how to intervene</strong> to keep Claude productive.</p>
+<p>What&apos;s particularly distinctive is your <strong>PR-centric workflow orchestration</strong>. You regularly chain together PR reviews with epic cross-referencing, direct code fixes pushed to branches, review response drafting, and CI failure resolution — all in single sessions. You treat Claude as a junior developer who needs supervision but can handle the mechanical work: you provide strategic context (&quot;check this against the epic&apos;s sub-tasks&quot;, &quot;verify this defends one UUID → one email&quot;) while Claude handles the implementation grunt work across your multi-repo setup. The 380 commits across this period — roughly 4 per session analyzed — confirm you&apos;re shipping real code through Claude at a remarkable pace, with Markdown (1,912 files) dominating your language profile because so much of your work involves documentation, PR descriptions, and review write-ups rather than raw code generation.</p>
+      <div class="key-insight"><strong>Key pattern:</strong> You delegate complex, multi-step PR and git workflows end-to-end, let Claude execute autonomously, and course-correct sharply when it drifts off track — functioning as a hands-off manager who intervenes only at decision points.</div>
     </div>
     
 
@@ -342,41 +347,41 @@
       <div class="chart-title">User Response Time Distribution</div>
       <div class="bar-row">
         <div class="bar-label">2-10s</div>
-        <div class="bar-track"><div class="bar-fill" style="width:30.075187969924812%;background:#6366f1"></div></div>
-        <div class="bar-value">40</div>
+        <div class="bar-track"><div class="bar-fill" style="width:25.18796992481203%;background:#6366f1"></div></div>
+        <div class="bar-value">134</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">10-30s</div>
-        <div class="bar-track"><div class="bar-fill" style="width:75.18796992481202%;background:#6366f1"></div></div>
-        <div class="bar-value">100</div>
+        <div class="bar-track"><div class="bar-fill" style="width:59.58646616541353%;background:#6366f1"></div></div>
+        <div class="bar-value">317</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">30s-1m</div>
-        <div class="bar-track"><div class="bar-fill" style="width:94.73684210526315%;background:#6366f1"></div></div>
-        <div class="bar-value">126</div>
+        <div class="bar-track"><div class="bar-fill" style="width:88.34586466165413%;background:#6366f1"></div></div>
+        <div class="bar-value">470</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">1-2m</div>
-        <div class="bar-track"><div class="bar-fill" style="width:92.4812030075188%;background:#6366f1"></div></div>
-        <div class="bar-value">123</div>
+        <div class="bar-track"><div class="bar-fill" style="width:97.55639097744361%;background:#6366f1"></div></div>
+        <div class="bar-value">519</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">2-5m</div>
         <div class="bar-track"><div class="bar-fill" style="width:100%;background:#6366f1"></div></div>
-        <div class="bar-value">133</div>
+        <div class="bar-value">532</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">5-15m</div>
-        <div class="bar-track"><div class="bar-fill" style="width:39.097744360902254%;background:#6366f1"></div></div>
-        <div class="bar-value">52</div>
+        <div class="bar-track"><div class="bar-fill" style="width:65.22556390977444%;background:#6366f1"></div></div>
+        <div class="bar-value">347</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">>15m</div>
-        <div class="bar-track"><div class="bar-fill" style="width:32.33082706766917%;background:#6366f1"></div></div>
-        <div class="bar-value">43</div>
+        <div class="bar-track"><div class="bar-fill" style="width:40.037593984962406%;background:#6366f1"></div></div>
+        <div class="bar-value">213</div>
       </div>
       <div style="font-size: 12px; color: #64748b; margin-top: 8px;">
-        Median: 71.4s &bull; Average: 249.5s
+        Median: 93.2s &bull; Average: 292.5s
       </div>
     </div>
 
@@ -386,15 +391,15 @@
       
         <div style="display: flex; gap: 24px; margin: 12px 0;">
           <div style="text-align: center;">
-            <div style="font-size: 24px; font-weight: 700; color: #7c3aed;">9</div>
+            <div style="font-size: 24px; font-weight: 700; color: #7c3aed;">102</div>
             <div style="font-size: 11px; color: #64748b; text-transform: uppercase;">Overlap Events</div>
           </div>
           <div style="text-align: center;">
-            <div style="font-size: 24px; font-weight: 700; color: #7c3aed;">17</div>
+            <div style="font-size: 24px; font-weight: 700; color: #7c3aed;">132</div>
             <div style="font-size: 11px; color: #64748b; text-transform: uppercase;">Sessions Involved</div>
           </div>
           <div style="text-align: center;">
-            <div style="font-size: 24px; font-weight: 700; color: #7c3aed;">3%</div>
+            <div style="font-size: 24px; font-weight: 700; color: #7c3aed;">20%</div>
             <div style="font-size: 11px; color: #64748b; text-transform: uppercase;">Of Messages</div>
           </div>
         </div>
@@ -423,26 +428,26 @@
         <div id="hour-histogram">
       <div class="bar-row">
         <div class="bar-label">Morning (6-12)</div>
-        <div class="bar-track"><div class="bar-fill" style="width:48.68995633187773%;background:#8b5cf6"></div></div>
-        <div class="bar-value">223</div>
+        <div class="bar-track"><div class="bar-fill" style="width:38.380476982806435%;background:#8b5cf6"></div></div>
+        <div class="bar-value">692</div>
       </div>
 
       <div class="bar-row">
         <div class="bar-label">Afternoon (12-18)</div>
         <div class="bar-track"><div class="bar-fill" style="width:100%;background:#8b5cf6"></div></div>
-        <div class="bar-value">458</div>
+        <div class="bar-value">1803</div>
       </div>
 
       <div class="bar-row">
         <div class="bar-label">Evening (18-24)</div>
-        <div class="bar-track"><div class="bar-fill" style="width:24.017467248908297%;background:#8b5cf6"></div></div>
-        <div class="bar-value">110</div>
+        <div class="bar-track"><div class="bar-fill" style="width:38.2140876317249%;background:#8b5cf6"></div></div>
+        <div class="bar-value">689</div>
       </div>
 
       <div class="bar-row">
         <div class="bar-label">Night (0-6)</div>
-        <div class="bar-track"><div class="bar-fill" style="width:0%;background:#8b5cf6"></div></div>
-        <div class="bar-value">0</div>
+        <div class="bar-track"><div class="bar-fill" style="width:7.0992789794786475%;background:#8b5cf6"></div></div>
+        <div class="bar-value">128</div>
       </div></div>
       </div>
       <div class="chart-card">
@@ -450,54 +455,54 @@
         <div class="bar-row">
         <div class="bar-label">Command Failed</div>
         <div class="bar-track"><div class="bar-fill" style="width:100%;background:#dc2626"></div></div>
-        <div class="bar-value">183</div>
-      </div>
-<div class="bar-row">
-        <div class="bar-label">User Rejected</div>
-        <div class="bar-track"><div class="bar-fill" style="width:43.169398907103826%;background:#dc2626"></div></div>
-        <div class="bar-value">79</div>
+        <div class="bar-value">903</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Other</div>
-        <div class="bar-track"><div class="bar-fill" style="width:41.53005464480874%;background:#dc2626"></div></div>
-        <div class="bar-value">76</div>
+        <div class="bar-track"><div class="bar-fill" style="width:46.29014396456257%;background:#dc2626"></div></div>
+        <div class="bar-value">418</div>
+      </div>
+<div class="bar-row">
+        <div class="bar-label">User Rejected</div>
+        <div class="bar-track"><div class="bar-fill" style="width:13.178294573643413%;background:#dc2626"></div></div>
+        <div class="bar-value">119</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">File Not Found</div>
-        <div class="bar-track"><div class="bar-fill" style="width:3.825136612021858%;background:#dc2626"></div></div>
-        <div class="bar-value">7</div>
-      </div>
-<div class="bar-row">
-        <div class="bar-label">Edit Failed</div>
-        <div class="bar-track"><div class="bar-fill" style="width:3.825136612021858%;background:#dc2626"></div></div>
-        <div class="bar-value">7</div>
+        <div class="bar-track"><div class="bar-fill" style="width:3.433001107419712%;background:#dc2626"></div></div>
+        <div class="bar-value">31</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">File Too Large</div>
-        <div class="bar-track"><div class="bar-fill" style="width:2.73224043715847%;background:#dc2626"></div></div>
-        <div class="bar-value">5</div>
+        <div class="bar-track"><div class="bar-fill" style="width:2.768549280177187%;background:#dc2626"></div></div>
+        <div class="bar-value">25</div>
+      </div>
+<div class="bar-row">
+        <div class="bar-label">Edit Failed</div>
+        <div class="bar-track"><div class="bar-fill" style="width:2.436323366555925%;background:#dc2626"></div></div>
+        <div class="bar-value">22</div>
       </div>
       </div>
     </div>
 
     
     <h2 id="section-wins">Impressive Things You Did</h2>
-    <p class="section-intro">Over the past month, you've run 84 sessions with a strong focus on debugging, code review, and feature implementation across a PHP/ClickHouse/MySQL stack, achieving full or mostly successful outcomes in about 77% of your sessions.</p>
+    <p class="section-intro">Over the past three months, you&apos;ve run 292 sessions with a 60% fully-achieved rate and 380 commits, building a deeply integrated Claude Code workflow around PR management, code review, and monorepo operations.</p>
     <div class="big-wins">
       
         <div class="big-win">
-          <div class="big-win-title">Systematic Multi-Agent PR Reviews</div>
-          <div class="big-win-desc">You've built a repeatable PR review workflow that leverages Claude's Task tool to spin up parallel sub-agents analyzing security, architecture, best practices, and testing in a single pass. Across at least 10 review sessions, you consistently receive structured, consolidated verdicts with actionable findings — effectively turning Claude into a thorough review committee you can iterate with before merging.</div>
+          <div class="big-win-title">End-to-End PR Lifecycle Management</div>
+          <div class="big-win-desc">You&apos;ve built a remarkably complete PR workflow where Claude handles reviews, implements fixes from review findings, runs tests, posts review replies, manages forward merges across PR chains, and even drafts polished review summaries. Your ability to chain these steps—review, fix, verify, communicate—in single sessions consistently produces fully-achieved outcomes rated as essential.</div>
         </div>
       
         <div class="big-win">
-          <div class="big-win-title">Full Issue-to-PR Pipeline</div>
-          <div class="big-win-desc">You've established a disciplined end-to-end workflow that moves from GitHub issue analysis through implementation, test writing, and PR creation with generated descriptions — all within single Claude sessions. Your ClickHouse data loss fix session is a great example: you implemented the watermark fix, ran manual Docker validation, wrote a reproduction guide, and created the PR, treating Claude as a pair programmer across the entire development lifecycle.</div>
+          <div class="big-win-title">Epic-Aware Contextual Code Reviews</div>
+          <div class="big-win-desc">You go beyond surface-level reviews by having Claude cross-reference PRs against epic sub-tasks, stacked PR context, and merge order dependencies. This iterative refinement approach—where you feed Claude additional context and have it update findings accordingly—produces nuanced reviews that catch real architectural issues rather than just style nits.</div>
         </div>
       
         <div class="big-win">
-          <div class="big-win-title">Heavy TodoWrite for Complex Debugging</div>
-          <div class="big-win-desc">With 221 TodoWrite invocations and 33 debugging sessions, you're clearly using structured task tracking to manage multi-step investigations like tracing UUID re-identification bugs and revenue data discrepancies across MySQL, ClickHouse, and PHP. This disciplined approach to decomposing complex problems — combined with your willingness to course-correct Claude when it jumps to conclusions — helps you systematically narrow down root causes even in sprawling codebases.</div>
+          <div class="big-win-title">Complex Monorepo and Worktree Operations</div>
+          <div class="big-win-desc">You confidently leverage git worktrees, submodule management, and multi-repo coordination across your monorepo setup, using Claude to resolve merge conflicts, manage branch tracking, and clean up worktrees across sub-repos. Despite the inherent complexity of this environment, you consistently guide Claude through tricky git scenarios and recover quickly when it takes a wrong approach.</div>
         </div>
       
     </div>
@@ -507,56 +512,61 @@
       <div class="chart-card">
         <div class="chart-title">What Helped Most (Claude's Capabilities)</div>
         <div class="bar-row">
-        <div class="bar-label">Good Debugging</div>
-        <div class="bar-track"><div class="bar-fill" style="width:100%;background:#16a34a"></div></div>
-        <div class="bar-value">21</div>
-      </div>
-<div class="bar-row">
         <div class="bar-label">Multi-file Changes</div>
-        <div class="bar-track"><div class="bar-fill" style="width:95.23809523809523%;background:#16a34a"></div></div>
-        <div class="bar-value">20</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:#16a34a"></div></div>
+        <div class="bar-value">40</div>
       </div>
 <div class="bar-row">
-        <div class="bar-label">Correct Code Edits</div>
-        <div class="bar-track"><div class="bar-fill" style="width:71.42857142857143%;background:#16a34a"></div></div>
-        <div class="bar-value">15</div>
-      </div>
-<div class="bar-row">
-        <div class="bar-label">Good Explanations</div>
-        <div class="bar-track"><div class="bar-fill" style="width:71.42857142857143%;background:#16a34a"></div></div>
-        <div class="bar-value">15</div>
+        <div class="bar-label">Good Debugging</div>
+        <div class="bar-track"><div class="bar-fill" style="width:85%;background:#16a34a"></div></div>
+        <div class="bar-value">34</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Proactive Help</div>
-        <div class="bar-track"><div class="bar-fill" style="width:28.57142857142857%;background:#16a34a"></div></div>
-        <div class="bar-value">6</div>
+        <div class="bar-track"><div class="bar-fill" style="width:80%;background:#16a34a"></div></div>
+        <div class="bar-value">32</div>
+      </div>
+<div class="bar-row">
+        <div class="bar-label">Good Explanations</div>
+        <div class="bar-track"><div class="bar-fill" style="width:55.00000000000001%;background:#16a34a"></div></div>
+        <div class="bar-value">22</div>
+      </div>
+<div class="bar-row">
+        <div class="bar-label">Correct Code Edits</div>
+        <div class="bar-track"><div class="bar-fill" style="width:52.5%;background:#16a34a"></div></div>
+        <div class="bar-value">21</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Fast/Accurate Search</div>
-        <div class="bar-track"><div class="bar-fill" style="width:19.047619047619047%;background:#16a34a"></div></div>
-        <div class="bar-value">4</div>
+        <div class="bar-track"><div class="bar-fill" style="width:35%;background:#16a34a"></div></div>
+        <div class="bar-value">14</div>
       </div>
       </div>
       <div class="chart-card">
         <div class="chart-title">Outcomes</div>
         <div class="bar-row">
+        <div class="bar-label">Not Achieved</div>
+        <div class="bar-track"><div class="bar-fill" style="width:1.9801980198019802%;background:#8b5cf6"></div></div>
+        <div class="bar-value">2</div>
+      </div>
+<div class="bar-row">
         <div class="bar-label">Partially Achieved</div>
-        <div class="bar-track"><div class="bar-fill" style="width:45.94594594594595%;background:#8b5cf6"></div></div>
-        <div class="bar-value">17</div>
+        <div class="bar-track"><div class="bar-fill" style="width:20.792079207920793%;background:#8b5cf6"></div></div>
+        <div class="bar-value">21</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Mostly Achieved</div>
-        <div class="bar-track"><div class="bar-fill" style="width:75.67567567567568%;background:#8b5cf6"></div></div>
-        <div class="bar-value">28</div>
+        <div class="bar-track"><div class="bar-fill" style="width:41.584158415841586%;background:#8b5cf6"></div></div>
+        <div class="bar-value">42</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Fully Achieved</div>
         <div class="bar-track"><div class="bar-fill" style="width:100%;background:#8b5cf6"></div></div>
-        <div class="bar-value">37</div>
+        <div class="bar-value">101</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Unclear</div>
-        <div class="bar-track"><div class="bar-fill" style="width:5.405405405405405%;background:#8b5cf6"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="width:1.9801980198019802%;background:#8b5cf6"></div></div>
         <div class="bar-value">2</div>
       </div>
       </div>
@@ -564,25 +574,25 @@
 
     
     <h2 id="section-friction">Where Things Go Wrong</h2>
-    <p class="section-intro">Your workflow is heavily impacted by a recurring GitHub API deprecation issue and by Claude taking wrong approaches before understanding the full problem context.</p>
+    <p class="section-intro">Your sessions reveal a recurring pattern where Claude takes wrong initial approaches, struggles with your monorepo/Docker environment specifics, and makes errors in git workflow operations that require you to redirect and correct.</p>
     <div class="friction-categories">
       
         <div class="friction-category">
-          <div class="friction-title">Recurring GitHub API Script Failures</div>
-          <div class="friction-desc">Your PR review workflow relies on an artifact collection script that repeatedly breaks due to a GitHub Projects Classic GraphQL deprecation warning, forcing you into manual recovery almost every time. You should update the script to handle or suppress this deprecation warning, or migrate away from the deprecated API entirely.</div>
-          <ul class="friction-examples"><li>At least 7 separate sessions hit the same GitHub Projects Classic deprecation warning, each time requiring you to manually fetch remaining PR artifacts — a completely avoidable repeated failure</li><li>Initial PR artifact fetch scripts failed partway through in multiple review sessions, interrupting your multi-agent review workflow and wasting setup time before the actual review could begin</li></ul>
+          <div class="friction-title">Wrong Initial Approach Requiring Redirection</div>
+          <div class="friction-desc">In over 100 sessions, Claude took a wrong approach before arriving at the right one, costing you significant time in correction and redirection. You could reduce this by front-loading more context in your prompts—specifying exactly what kind of test you want, which part of the system to investigate, or what branch to work from—rather than relying on Claude to infer your intent.</div>
+          <ul class="friction-examples"><li>Claude ran unit tests when you wanted a real end-to-end import test, requiring you to explicitly clarify &apos;I was referring to a proper import&apos;—wasting a round-trip on the wrong test type entirely.</li><li>Claude spent significant time analyzing cron workers for API timeout investigation that you determined were irrelevant distractions, and the resulting inquiry doc was too long for its intended Slack audience.</li></ul>
         </div>
       
         <div class="friction-category">
-          <div class="friction-title">Premature Solution Attempts Without Sufficient Investigation</div>
-          <div class="friction-desc">Claude frequently jumped to fixes or conclusions before fully understanding the problem space, leading to wrong initial approaches that you had to correct. You could mitigate this by prompting Claude to investigate and summarize its understanding before proposing solutions, especially for debugging sessions.</div>
-          <ul class="friction-examples"><li>During UUID re-identification debugging, Claude repeatedly jumped to conclusions without understanding the architecture (UUID tracker mechanism, plugin-side vs JS tracker), proposed premature solutions, and generated invalid SQL — requiring several course corrections from you</li><li>When debugging a 500 error in email workflow steps, Claude initially fixed the wrong issue (null sender domain code) when the real problem was database configuration, requiring multiple investigation rounds before reaching the actual root cause</li></ul>
+          <div class="friction-title">Monorepo and Environment Misunderstanding</div>
+          <div class="friction-desc">Claude repeatedly fails to account for your specific infrastructure—Docker/Sail for running commands, monorepo structure with submodules, and worktree layouts across sub-repos. You could mitigate this by ensuring your CLAUDE.md or project instructions explicitly document that all artisan commands must run via Sail, that worktrees exist in sub-repos not just the root, and how your monorepo branches relate to sub-repo branches.</div>
+          <ul class="friction-examples"><li>Claude tried to run a migration with plain &apos;php artisan&apos; instead of through Docker/Sail, causing a false failure that required you to correct the execution context.</li><li>A session-renaming script incorrectly renamed 112 monorepo sessions to the same PR title because Claude didn&apos;t account for shared branches across the monorepo, and later missed sessions by only checking the first text block for GitHub URLs.</li></ul>
         </div>
       
         <div class="friction-category">
-          <div class="friction-title">Iterative Code/Test Failures Requiring User Redirection</div>
-          <div class="friction-desc">Claude's initial code implementations — especially tests and bug fixes — frequently needed multiple rewrites or user intervention to adopt a better approach, adding significant back-and-forth to sessions that should have been straightforward. You might benefit from having Claude outline its implementation plan before writing code so you can steer it early.</div>
-          <ul class="friction-examples"><li>When fixing flaky parallel test failures caused by zombie mocks, Claude made many incremental fix attempts that were ineffective, resulting in a long iterative session where the issue remained partially unresolved — rated only slightly helpful</li><li>For the broadcast recipient count bug fix, Claude's initial approach was rejected by you, and you had to suggest the better approach (Option 3) of separating all-subscribed count from filtered count before the correct fix could be implemented</li></ul>
+          <div class="friction-title">Git Workflow and Branch Management Errors</div>
+          <div class="friction-desc">Claude frequently makes mistakes with git operations—creating worktrees from wrong branches, generating PRs against wrong repos, and misunderstanding push/cleanup instructions—which is notable since git_operations and pr_creation are among your top task types. You could reduce this friction by specifying the exact source branch, target branch, and repo in your initial prompt rather than assuming Claude will infer the correct git context.</div>
+          <ul class="friction-examples"><li>Claude created a git worktree from the wrong branch instead of directly from the PR branch, forcing you to correct it and redo the operation, and separately the PR description generator ran against the monorepo branch instead of the worktree branch.</li><li>Claude tried to add a verified flash fix to the PR branch when master already had it, and misunderstood your push/worktree cleanup instruction by assuming you wanted to push from the worktree instead of removing it and switching branches on main.</li></ul>
         </div>
       
     </div>
@@ -594,60 +604,60 @@
         <div class="bar-row">
         <div class="bar-label">Wrong Approach</div>
         <div class="bar-track"><div class="bar-fill" style="width:100%;background:#dc2626"></div></div>
-        <div class="bar-value">59</div>
+        <div class="bar-value">107</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Buggy Code</div>
-        <div class="bar-track"><div class="bar-fill" style="width:54.23728813559322%;background:#dc2626"></div></div>
-        <div class="bar-value">32</div>
+        <div class="bar-track"><div class="bar-fill" style="width:44.85981308411215%;background:#dc2626"></div></div>
+        <div class="bar-value">48</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Misunderstood Request</div>
-        <div class="bar-track"><div class="bar-fill" style="width:32.20338983050847%;background:#dc2626"></div></div>
-        <div class="bar-value">19</div>
+        <div class="bar-track"><div class="bar-fill" style="width:36.44859813084112%;background:#dc2626"></div></div>
+        <div class="bar-value">39</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Excessive Changes</div>
-        <div class="bar-track"><div class="bar-fill" style="width:10.16949152542373%;background:#dc2626"></div></div>
-        <div class="bar-value">6</div>
+        <div class="bar-track"><div class="bar-fill" style="width:14.953271028037381%;background:#dc2626"></div></div>
+        <div class="bar-value">16</div>
+      </div>
+<div class="bar-row">
+        <div class="bar-label">Api Errors</div>
+        <div class="bar-track"><div class="bar-fill" style="width:7.476635514018691%;background:#dc2626"></div></div>
+        <div class="bar-value">8</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Tool Error</div>
-        <div class="bar-track"><div class="bar-fill" style="width:5.084745762711865%;background:#dc2626"></div></div>
-        <div class="bar-value">3</div>
-      </div>
-<div class="bar-row">
-        <div class="bar-label">Tool Issues</div>
-        <div class="bar-track"><div class="bar-fill" style="width:3.389830508474576%;background:#dc2626"></div></div>
-        <div class="bar-value">2</div>
+        <div class="bar-track"><div class="bar-fill" style="width:5.607476635514018%;background:#dc2626"></div></div>
+        <div class="bar-value">6</div>
       </div>
       </div>
       <div class="chart-card">
         <div class="chart-title">Inferred Satisfaction (model-estimated)</div>
         <div class="bar-row">
         <div class="bar-label">Frustrated</div>
-        <div class="bar-track"><div class="bar-fill" style="width:1.5957446808510638%;background:#eab308"></div></div>
-        <div class="bar-value">3</div>
+        <div class="bar-track"><div class="bar-fill" style="width:4.884318766066838%;background:#eab308"></div></div>
+        <div class="bar-value">19</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Dissatisfied</div>
-        <div class="bar-track"><div class="bar-fill" style="width:21.808510638297875%;background:#eab308"></div></div>
-        <div class="bar-value">41</div>
+        <div class="bar-track"><div class="bar-fill" style="width:19.28020565552699%;background:#eab308"></div></div>
+        <div class="bar-value">75</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Likely Satisfied</div>
         <div class="bar-track"><div class="bar-fill" style="width:100%;background:#eab308"></div></div>
-        <div class="bar-value">188</div>
+        <div class="bar-value">389</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Satisfied</div>
-        <div class="bar-track"><div class="bar-fill" style="width:16.48936170212766%;background:#eab308"></div></div>
-        <div class="bar-value">31</div>
+        <div class="bar-track"><div class="bar-fill" style="width:24.164524421593832%;background:#eab308"></div></div>
+        <div class="bar-value">94</div>
       </div>
 <div class="bar-row">
         <div class="bar-label">Happy</div>
-        <div class="bar-track"><div class="bar-fill" style="width:1.0638297872340425%;background:#eab308"></div></div>
-        <div class="bar-value">2</div>
+        <div class="bar-track"><div class="bar-fill" style="width:1.5424164524421593%;background:#eab308"></div></div>
+        <div class="bar-value">6</div>
       </div>
       </div>
     </div>
@@ -663,57 +673,72 @@
       </div>
       
         <div class="claude-md-item">
-          <input type="checkbox" id="cmd-0" class="cmd-checkbox" checked data-text="Add under a new ## GitHub / PR Reviews section at the top level of CLAUDE.md\n\nWhen fetching GitHub PR artifacts via GraphQL, always handle the GitHub Projects Classic deprecation warning gracefully. Use `gh pr view` and `gh pr diff` CLI commands as the primary method instead of custom GraphQL scripts.">
+          <input type="checkbox" id="cmd-0" class="cmd-checkbox" checked data-text="Add as a top-level ## Environment section near the top of CLAUDE.md so it&apos;s always visible.\n\n## Environment
+This project runs in Docker/Laravel Sail. Always use `./vendor/bin/sail` prefix for artisan commands, migrations, and tests. Never use bare `php artisan` commands.">
           <label for="cmd-0">
-            <code class="cmd-code">When fetching GitHub PR artifacts via GraphQL, always handle the GitHub Projects Classic deprecation warning gracefully. Use `gh pr view` and `gh pr diff` CLI commands as the primary method instead of custom GraphQL scripts.</code>
+            <code class="cmd-code">## Environment
+This project runs in Docker/Laravel Sail. Always use `./vendor/bin/sail` prefix for artisan commands, migrations, and tests. Never use bare `php artisan` commands.</code>
             <button class="copy-btn" onclick="copyCmdItem(0)">Copy</button>
           </label>
-          <div class="cmd-why">At least 7 sessions experienced friction from GitHub Projects Classic deprecation warnings breaking artifact collection scripts, requiring manual recovery every time.</div>
+          <div class="cmd-why">Claude repeatedly tried running commands outside the Sail container (migrations, tests), causing false failures and requiring user correction.</div>
         </div>
       
         <div class="claude-md-item">
-          <input type="checkbox" id="cmd-1" class="cmd-checkbox" checked data-text="Add under ## Debugging section in CLAUDE.md\n\nWhen debugging, do NOT jump to conclusions or propose fixes prematurely. Always: 1) Fully trace the code path first, 2) Confirm the root cause with evidence (logs, queries, codebase exploration), 3) Only then propose a solution. Ask clarifying questions if the architecture is unclear.">
+          <input type="checkbox" id="cmd-1" class="cmd-checkbox" checked data-text="Add under a ## Git &amp; PR Workflow section in CLAUDE.md.\n\n## Git &amp; PR Workflow
+- When creating PRs, always run the PR description generator against the correct repo/branch (check worktree branch vs monorepo branch).
+- Never use GitHub `#number` syntax in code comments — it creates broken issue cross-references.
+- When working in worktrees, verify the branch and remote tracking are correct before committing or pushing.
+- When user says &apos;push&apos;, push from the current working branch — don&apos;t assume worktree context unless specified.">
           <label for="cmd-1">
-            <code class="cmd-code">When debugging, do NOT jump to conclusions or propose fixes prematurely. Always: 1) Fully trace the code path first, 2) Confirm the root cause with evidence (logs, queries, codebase exploration), 3) Only then propose a solution. Ask clarifying questions if the architecture is unclear.</code>
+            <code class="cmd-code">## Git &amp; PR Workflow
+- When creating PRs, always run the PR description generator against the correct repo/branch (check worktree branch vs monorepo branch).
+- Never use GitHub `#number` syntax in code comments — it creates broken issue cross-references.
+- When working in worktrees, verify the branch and remote tracking are correct before committing or pushing.
+- When user says &apos;push&apos;, push from the current working branch — don&apos;t assume worktree context unless specified.</code>
             <button class="copy-btn" onclick="copyCmdItem(1)">Copy</button>
           </label>
-          <div class="cmd-why">The top friction category is 'wrong_approach' (59 instances) with multiple sessions showing Claude proposing fixes before understanding the architecture, requiring user course corrections.</div>
+          <div class="cmd-why">Multiple sessions had friction from wrong branch detection in worktrees, PR description generators targeting wrong repos, and broken GitHub references in comments.</div>
         </div>
       
         <div class="claude-md-item">
-          <input type="checkbox" id="cmd-2" class="cmd-checkbox" checked data-text="Add under ## Testing section in CLAUDE.md\n\nBefore modifying test code, check existing test conventions in the codebase (e.g., markTestSkipped patterns, database constraint handling, mock cleanup patterns). Follow established patterns rather than introducing new ones.">
+          <input type="checkbox" id="cmd-2" class="cmd-checkbox" checked data-text="Add under a ## Monorepo Structure or ## Project Structure section near the top of CLAUDE.md.\n\n## Monorepo Structure
+This is a monorepo with sub-repos (lindris-frontend, lindris-backend, etc.). When asked to check worktrees, git state, or run operations, check ALL sub-repos — not just the top-level monorepo root.">
           <label for="cmd-2">
-            <code class="cmd-code">Before modifying test code, check existing test conventions in the codebase (e.g., markTestSkipped patterns, database constraint handling, mock cleanup patterns). Follow established patterns rather than introducing new ones.</code>
+            <code class="cmd-code">## Monorepo Structure
+This is a monorepo with sub-repos (lindris-frontend, lindris-backend, etc.). When asked to check worktrees, git state, or run operations, check ALL sub-repos — not just the top-level monorepo root.</code>
             <button class="copy-btn" onclick="copyCmdItem(2)">Copy</button>
           </label>
-          <div class="cmd-why">Multiple sessions had friction from Claude ignoring test conventions (removing markTestSkipped guards, missing unique constraints, zombie mock issues), requiring rewrites.</div>
+          <div class="cmd-why">Claude repeatedly only checked the main monorepo when the user needed operations across sub-repos (worktree cleanup, session renaming, branch management), requiring redirection.</div>
         </div>
       
         <div class="claude-md-item">
-          <input type="checkbox" id="cmd-3" class="cmd-checkbox" checked data-text="Add under ## GitHub / PR Reviews section in CLAUDE.md\n\nWhen the user provides a GitHub URL, verify whether it's an issue or a PR before proceeding. Use `gh issue view` or `gh pr view` to confirm the resource type.">
+          <input type="checkbox" id="cmd-3" class="cmd-checkbox" checked data-text="Add under a ## Testing section in CLAUDE.md.\n\n## Testing
+- When the user asks for &apos;real tests&apos; or &apos;end-to-end tests&apos;, run actual integration/E2E tests against real services — not unit tests or mocks.
+- Always run tests inside the Sail container.
+- When reviewing test suggestions, ensure they test meaningful invariants — avoid vacuous test recommendations.">
           <label for="cmd-3">
-            <code class="cmd-code">When the user provides a GitHub URL, verify whether it's an issue or a PR before proceeding. Use `gh issue view` or `gh pr view` to confirm the resource type.</code>
+            <code class="cmd-code">## Testing
+- When the user asks for &apos;real tests&apos; or &apos;end-to-end tests&apos;, run actual integration/E2E tests against real services — not unit tests or mocks.
+- Always run tests inside the Sail container.
+- When reviewing test suggestions, ensure they test meaningful invariants — avoid vacuous test recommendations.</code>
             <button class="copy-btn" onclick="copyCmdItem(3)">Copy</button>
           </label>
-          <div class="cmd-why">Multiple sessions had Claude attempt to review an issue URL as a PR or confuse issue/PR workflows, wasting time on redirection.</div>
+          <div class="cmd-why">Claude ran unit tests when the user wanted real E2E import tests, ran tests outside Docker, and admitted its own test suggestions were vacuous — all recurring friction points.</div>
         </div>
       
         <div class="claude-md-item">
-          <input type="checkbox" id="cmd-4" class="cmd-checkbox" checked data-text="Add under ## Tech Stack section near the top of CLAUDE.md\n\nThis project uses PHP (including legacy PHP 5.6 compatibility in some files), Laravel, MySQL, ClickHouse, and Docker. When making code changes, always verify PHP version compatibility requirements for the file being edited.">
+          <input type="checkbox" id="cmd-4" class="cmd-checkbox" checked data-text="Add under a ## Communication Style section in CLAUDE.md.\n\n## Communication Style
+- When drafting Slack messages or PR comments, use a casual, natural human tone — not robotic or formal.
+- Keep Slack messages concise and scannable.
+- Don&apos;t over-assume context (e.g., don&apos;t assume only one commit was pushed).">
           <label for="cmd-4">
-            <code class="cmd-code">This project uses PHP (including legacy PHP 5.6 compatibility in some files), Laravel, MySQL, ClickHouse, and Docker. When making code changes, always verify PHP version compatibility requirements for the file being edited.</code>
+            <code class="cmd-code">## Communication Style
+- When drafting Slack messages or PR comments, use a casual, natural human tone — not robotic or formal.
+- Keep Slack messages concise and scannable.
+- Don&apos;t over-assume context (e.g., don&apos;t assume only one commit was pushed).</code>
             <button class="copy-btn" onclick="copyCmdItem(4)">Copy</button>
           </label>
-          <div class="cmd-why">Multiple sessions involved PHP compatibility issues (PHP 5.6 syntax in json.inc.php, phplint failures, Yoda conditions) that could have been avoided with upfront awareness.</div>
-        </div>
-      
-        <div class="claude-md-item">
-          <input type="checkbox" id="cmd-5" class="cmd-checkbox" checked data-text="Add under ## General Guidelines section in CLAUDE.md\n\nWhen proposing multiple solution approaches, present them briefly and let the user choose before implementing. Do not over-engineer — prefer the simplest approach unless complexity is justified.">
-          <label for="cmd-5">
-            <code class="cmd-code">When proposing multiple solution approaches, present them briefly and let the user choose before implementing. Do not over-engineer — prefer the simplest approach unless complexity is justified.</code>
-            <button class="copy-btn" onclick="copyCmdItem(5)">Copy</button>
-          </label>
-          <div class="cmd-why">Several sessions (Google Drive sync, bug fixes) showed Claude going through many over-engineered attempts before the user redirected to a simpler solution, wasting significant time.</div>
+          <div class="cmd-why">Multiple sessions required 2+ rounds of correction on drafted messages being too robotic, too long, or making wrong assumptions about what happened.</div>
         </div>
       
     </div>
@@ -724,22 +749,19 @@
       
         <div class="feature-card">
           <div class="feature-title">Custom Skills</div>
-          <div class="feature-oneliner">Reusable markdown-based prompts triggered with a single /command</div>
-          <div class="feature-why"><strong>Why for you:</strong> You already do PR reviews in 17+ sessions and have some skills set up. But your PR review skill keeps failing due to the GitHub Projects Classic deprecation. Create a robust /review skill that uses `gh` CLI directly, and also a /debug skill that enforces your preferred structured debugging workflow (trace first, fix second).</div>
+          <div class="feature-oneliner">Reusable prompt workflows triggered by a single /command.</div>
+          <div class="feature-why"><strong>Why for you:</strong> You already have a /publish-insights skill and do PR reviews (35 sessions), PR creation (14 sessions), and planner updates repeatedly. Codifying your PR review format, PR creation checklist (correct branch, correct repo, Sail tests, description generator), and commit workflows as skills would eliminate the recurring friction from wrong branches and missed steps.</div>
           
           <div class="feature-examples">
             <div class="feature-example">
               <div class="example-code-row">
-                <code class="example-code">mkdir -p .claude/skills/review &amp;&amp; cat &gt; .claude/skills/review/SKILL.md &lt;&lt; 'EOF'
-# PR Review Skill
-
-## Steps
-1. Parse the PR number from the user input
-2. Run: `gh pr view &lt;number&gt; --json title,body,additions,deletions,files,reviews,comments`
-3. Run: `gh pr diff &lt;number&gt;`
-4. Do NOT use GraphQL scripts or projectItems queries (deprecated)
-5. Spawn sub-agents for: security, architecture, testing, best practices
-6. Consolidate into a single review with verdict: approve/request-changes
+                <code class="example-code">mkdir -p .claude/skills/pr-create &amp;&amp; cat &gt; .claude/skills/pr-create/SKILL.md &lt;&lt; &apos;EOF&apos;
+# Create PR Skill
+1. Confirm current branch and worktree context (show branch name, ask user to confirm)
+2. Run tests inside Sail container: `./vendor/bin/sail test`
+3. Run PR description generator against THIS repo&apos;s branch (not monorepo root)
+4. Create draft PR with `gh pr create --draft`
+5. Show PR URL to user
 EOF</code>
                 <button class="copy-btn" onclick="copyText(this)">Copy</button>
               </div>
@@ -750,8 +772,8 @@ EOF</code>
       
         <div class="feature-card">
           <div class="feature-title">Hooks</div>
-          <div class="feature-oneliner">Auto-run shell commands at specific lifecycle events</div>
-          <div class="feature-why"><strong>Why for you:</strong> You have 32 instances of buggy code friction and multiple sessions with phplint/pre-commit failures discovered late. A post-edit hook that runs linting on changed PHP files would catch these errors immediately instead of at commit time, saving significant debugging cycles.</div>
+          <div class="feature-oneliner">Auto-run shell commands at specific lifecycle events (pre-edit, post-edit, etc.).</div>
+          <div class="feature-why"><strong>Why for you:</strong> With 48 buggy_code and 107 wrong_approach friction events, auto-running lint and type checks after edits would catch issues before they compound. You could also auto-verify the correct Docker/Sail context before running any artisan commands.</div>
           
           <div class="feature-examples">
             <div class="feature-example">
@@ -759,10 +781,10 @@ EOF</code>
                 <code class="example-code"># Add to .claude/settings.json:
 {
   &quot;hooks&quot;: {
-    &quot;postToolUse&quot;: [
+    &quot;postToolExecution&quot;: [
       {
         &quot;matcher&quot;: &quot;Edit|Write&quot;,
-        &quot;command&quot;: &quot;bash -c 'for f in \&quot;$CLAUDE_EDITED_FILES\&quot;; do [[ \&quot;$f\&quot; == *.php ]] &amp;&amp; php -l \&quot;$f\&quot; 2&gt;&amp;1 || true; done'&quot;
+        &quot;command&quot;: &quot;./vendor/bin/sail exec laravel.test php -l $CLAUDE_FILE_PATH 2&gt;/dev/null || true&quot;
       }
     ]
   }
@@ -775,18 +797,15 @@ EOF</code>
         </div>
       
         <div class="feature-card">
-          <div class="feature-title">Headless Mode</div>
-          <div class="feature-oneliner">Run Claude non-interactively from scripts and CI/CD</div>
-          <div class="feature-why"><strong>Why for you:</strong> You already have a planner update skill that you trigger manually in multiple sessions. You could automate the planner refresh, PR review artifact collection, and even batch phplint checks as headless scripts that run on a schedule or as git hooks.</div>
+          <div class="feature-title">MCP Servers</div>
+          <div class="feature-oneliner">Connect Claude to external tools like GitHub, Sentry, and Slack via MCP.</div>
+          <div class="feature-why"><strong>Why for you:</strong> You frequently review PRs (35 sessions), create GitHub issues, check Sentry errors, and draft Slack messages. A GitHub MCP server would eliminate the recurring `gh` CLI deprecation errors and GraphQL issues you hit. A Sentry MCP server would let Claude pull error data directly instead of manual investigation.</div>
           
           <div class="feature-examples">
             <div class="feature-example">
               <div class="example-code-row">
-                <code class="example-code"># Auto-update planner daily via cron or git hook:
-claude -p &quot;Run the /planner-update skill to refresh Q1 2026 dashboard stats&quot; --allowedTools &quot;Read,Bash,Write,Glob&quot;
-
-# Pre-push PR review:
-claude -p &quot;Review the current branch changes against main. Focus on PHP compatibility, test coverage, and SQL correctness.&quot; --allowedTools &quot;Read,Bash,Grep,Glob&quot;</code>
+                <code class="example-code">claude mcp add github -- npx -y @modelcontextprotocol/server-github
+claude mcp add sentry -- npx -y @sentry/mcp-server</code>
                 <button class="copy-btn" onclick="copyText(this)">Copy</button>
               </div>
             </div>
@@ -802,14 +821,14 @@ claude -p &quot;Review the current branch changes against main. Focus on PHP com
     <div class="patterns-section">
       
         <div class="pattern-card">
-          <div class="pattern-title">Structured Debugging Protocol</div>
-          <div class="pattern-summary">Your #1 activity is debugging (33 sessions) but 'wrong_approach' is your #1 friction (59 instances). Enforce a structured debugging protocol in your prompts.</div>
-          <div class="pattern-detail">In many sessions, Claude jumps to proposing fixes before fully understanding the codebase architecture — especially with your multi-system setup (PHP + MySQL + ClickHouse + Docker). This leads to invalid SQL, wrong root cause identification, and wasted iterations. By explicitly asking Claude to trace before fixing, you can significantly reduce the back-and-forth. The UUID debugging session and revenue discrepancy session are prime examples where this would have saved 30+ minutes each.</div>
+          <div class="pattern-title">Wrong-approach friction dominates your sessions</div>
+          <div class="pattern-summary">107 &apos;wrong_approach&apos; friction events dwarf all other friction types combined — invest in guardrails to prevent Claude from going down rabbit holes.</div>
+          <div class="pattern-detail">Over 45% of your friction comes from Claude taking a wrong approach: investigating cron workers instead of the People API, running unit tests instead of E2E, creating worktrees from wrong branches, checking only the monorepo root. These are preventable with better upfront context in CLAUDE.md. The pattern suggests Claude lacks domain-specific knowledge about your project structure, so front-loading that context will have outsized impact on your 292 sessions.</div>
           
           <div class="copyable-prompt-section">
             <div class="prompt-label">Paste into Claude Code:</div>
             <div class="copyable-prompt-row">
-              <code class="copyable-prompt">Debug this issue step by step: [describe issue]. First, trace the full code path from entry point to the bug. Show me the evidence (relevant code, logs, or query results) before proposing any fix. Do not suggest solutions until I confirm you've identified the correct root cause.</code>
+              <code class="copyable-prompt">Before making any changes, briefly outline your plan and which repo/branch/container you&apos;ll work in. Wait for my confirmation before proceeding.</code>
               <button class="copy-btn" onclick="copyText(this)">Copy</button>
             </div>
           </div>
@@ -817,14 +836,14 @@ claude -p &quot;Review the current branch changes against main. Focus on PHP com
         </div>
       
         <div class="pattern-card">
-          <div class="pattern-title">Batch PR Reviews with Explicit Tooling</div>
-          <div class="pattern-summary">Your PR review sessions frequently stall on artifact collection. Front-load the data gathering with explicit commands.</div>
-          <div class="pattern-detail">17 sessions involve code review, and at least 7 of them hit the same GitHub Projects Classic deprecation error during artifact collection. Instead of relying on scripts that use GraphQL projectItems queries, tell Claude exactly how to fetch PR data. This eliminates the most common failure mode in your workflow and gets you to the actual review faster. Combined with the /review skill suggestion, this could save 5-10 minutes per review session.</div>
+          <div class="pattern-title">Your PR review workflow is your highest-value automation target</div>
+          <div class="pattern-summary">Code review (35) + PR creation (14) = your top workflow. Standardize it into a repeatable skill with built-in checks.</div>
+          <div class="pattern-detail">You spend more sessions on PR reviews than any other task, and they consistently achieve &apos;fully_achieved&apos; with &apos;essential&apos; helpfulness. But friction creeps in from wrong branches, stale context, and format iteration. A structured /review skill that auto-fetches PR context, cross-references epic/sub-tasks (which you do often), and outputs in your preferred format would eliminate the 2-3 correction rounds you currently need per review session.</div>
           
           <div class="copyable-prompt-section">
             <div class="prompt-label">Paste into Claude Code:</div>
             <div class="copyable-prompt-row">
-              <code class="copyable-prompt">Review PR #&lt;number&gt;. Fetch data using these commands only: `gh pr view &lt;number&gt; --json title,body,files,comments,reviews` and `gh pr diff &lt;number&gt;`. Do NOT use GraphQL queries or any script that queries projectItems. Spawn sub-agents for security, architecture, and testing analysis, then give me a consolidated verdict.</code>
+              <code class="copyable-prompt">Review PR #XXX. First, fetch the PR diff and linked epic/issues for context. Then produce findings in this format: severity (must-fix/suggestion/nit), file:line, finding, and recommendation. Cross-reference against any stacked PRs in the same epic.</code>
               <button class="copy-btn" onclick="copyText(this)">Copy</button>
             </div>
           </div>
@@ -832,14 +851,14 @@ claude -p &quot;Review the current branch changes against main. Focus on PHP com
         </div>
       
         <div class="pattern-card">
-          <div class="pattern-title">Prefer Simple Solutions First</div>
-          <div class="pattern-summary">Ask Claude to propose the simplest viable solution before exploring complex alternatives, especially for bug fixes.</div>
-          <div class="pattern-detail">Multiple sessions show a pattern where Claude attempts increasingly complex solutions when a simpler one would work — the Google Drive sync sessions are a clear example where the user had to redirect to a simpler approach after many failed complex attempts. With 11 bug_fix and 6 code_fix sessions, this pattern likely recurs often. Starting simple and escalating only if needed would reduce your 'wrong_approach' friction significantly and improve your 77% full/mostly achieved rate.</div>
+          <div class="pattern-title">Leverage Task Agents for your codebase exploration sessions</div>
+          <div class="pattern-summary">You already use 232 Agent invocations, but your debugging sessions (34) often stall when Claude explores the wrong subsystem.</div>
+          <div class="pattern-detail">Sessions like the API timeout diagnosis show Claude spending significant time on irrelevant cron workers before being redirected. Instead of letting Claude sequentially explore, explicitly ask it to spawn parallel sub-agents to investigate multiple hypotheses simultaneously. With your monorepo spanning frontend, backend, and multiple sub-repos, parallel exploration would significantly reduce the time-to-diagnosis that currently causes &apos;partially_achieved&apos; outcomes in debugging sessions.</div>
           
           <div class="copyable-prompt-section">
             <div class="prompt-label">Paste into Claude Code:</div>
             <div class="copyable-prompt-row">
-              <code class="copyable-prompt">Fix this bug: [describe bug]. Propose the simplest possible fix first (1-2 lines if possible). Only suggest a more complex approach if the simple one won't work, and explain why. Do not refactor surrounding code unless I ask.</code>
+              <code class="copyable-prompt">Use sub-agents to investigate this issue in parallel: Agent 1 should check the People API controller and middleware for timeouts. Agent 2 should check the database queries and indexes. Agent 3 should check the queue/worker configuration. Report back findings from all three before we decide on a direction.</code>
               <button class="copy-btn" onclick="copyText(this)">Copy</button>
             </div>
           </div>
@@ -852,38 +871,28 @@ claude -p &quot;Review the current branch changes against main. Focus on PHP com
 
     
     <h2 id="section-horizon">On the Horizon</h2>
-    <p class="section-intro">Your Claude Code usage reveals a power user deeply embedded in AI-assisted development, but with significant untapped potential to shift from interactive debugging sessions to autonomous, self-correcting workflows.</p>
+    <p class="section-intro">Your 292 sessions over three months reveal a power user whose workflow is ripe for autonomous, multi-agent orchestration that could eliminate the friction patterns showing up in 107 wrong-approach incidents and dramatically accelerate your PR-heavy development cycle.</p>
     <div class="horizon-section">
       
         <div class="horizon-card">
-          <div class="horizon-title">Autonomous Debug-to-Fix-to-PR Pipelines</div>
-          <div class="horizon-possible">Debugging dominates 39% of your sessions, yet many require multiple course corrections and repeated investigation rounds. Claude can run fully autonomous loops that reproduce a bug, bisect the cause, iterate fixes against your test suite, and open a PR—all without mid-session intervention. Combined with your existing Docker setup and integration tests, this could collapse multi-hour debugging sessions into single-prompt dispatches.</div>
-          <div class="horizon-tip"><strong>Getting started:</strong> Use Claude Code's headless mode or the Task tool (you already use it 140 times) to spawn a sub-agent that runs tests in a loop, auto-correcting until green. Pair with your CLAUDE.md skills to encode your codebase conventions so the agent doesn't skip guards or misapply patterns.</div>
-          <div class="pattern-prompt"><div class="prompt-label">Paste into Claude Code:</div><code>I need you to autonomously debug and fix this issue: [paste GitHub issue URL]. Follow this workflow strictly: 1) Read the issue and all linked discussion. 2) Search the codebase to understand the relevant architecture before proposing anything. 3) Write a failing test that reproduces the bug. 4) Run the test suite to confirm it fails. 5) Implement the minimal fix. 6) Re-run the full test suite in a loop, fixing any failures you introduce, up to 5 iterations. 7) If tests pass, create a branch, commit with a conventional commit message referencing the issue, and generate a PR description. 8) If after 5 iterations tests still fail, stop and provide a detailed summary of what you tried and where you're stuck. Do NOT skip test guards or markTestSkipped patterns that exist in the codebase—follow existing conventions.</code><button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+          <div class="horizon-title">Autonomous PR Review-Fix-Verify Pipeline</div>
+          <div class="horizon-possible">Your top workflows—code review (35), debugging (34), bug fixes (21), and PR creation (14)—are sequential steps that Claude already handles well individually but could execute as a single autonomous pipeline. Imagine kicking off one command that reviews a PR, implements all must-fix findings, runs tests in the correct environment (Sail, not host), verifies coverage, commits, pushes, and posts the review response—eliminating the back-and-forth that caused friction in multiple sessions. With 40 successful multi-file changes already proven, this pipeline could chain those capabilities end-to-end without human intervention between steps.</div>
+          <div class="horizon-tip"><strong>Getting started:</strong> Use Claude Code&apos;s sub-agent spawning (Agent tool, already used 232 times) combined with TodoWrite for structured task tracking. Set up a CLAUDE.md with environment rules (e.g., always use Sail for artisan commands) to prevent recurring friction.</div>
+          <div class="pattern-prompt"><div class="prompt-label">Paste into Claude Code:</div><code>Review PR #[NUMBER] thoroughly using our /pr-review skill, then autonomously: 1) Create a worktree from the PR branch (not from main), 2) Implement ALL must-fix findings as code changes, 3) Run the full test suite inside Sail (never bare php artisan), 4) If tests fail, debug and fix until green, 5) Commit with conventional commit messages referencing the PR, 6) Push to the PR branch, 7) Post a review response on GitHub summarizing what was fixed. Use TodoWrite to track each finding as a checklist item. Do NOT ask me for confirmation between steps—only stop if you encounter an ambiguous architectural decision.</code><button class="copy-btn" onclick="copyText(this)">Copy</button></div>
         </div>
       
         <div class="horizon-card">
-          <div class="horizon-title">Parallel Multi-Agent PR Reviews Without Failures</div>
-          <div class="horizon-possible">Your PR reviews are a standout success—comprehensive multi-agent analyses covering security, architecture, and testing. But artifact collection scripts fail repeatedly due to the GitHub Projects Classic deprecation, and sessions frequently end before reviews complete. You can build a robust, self-healing review pipeline where sub-agents handle each review dimension in parallel while a coordinator gracefully recovers from API errors and delivers a consolidated verdict every time.</div>
-          <div class="horizon-tip"><strong>Getting started:</strong> Create a Claude Code slash command or skill that wraps your PR review workflow with explicit error-handling instructions. Use the Task tool to spawn parallel sub-agents for security, performance, testing, and architecture review, with the parent agent aggregating results. Include fallback instructions for the known GitHub GraphQL deprecation issue.</div>
-          <div class="pattern-prompt"><div class="prompt-label">Paste into Claude Code:</div><code>Review PR [URL] using this parallel analysis workflow: Spawn separate sub-agents (using Task) for each of these dimensions: (1) Security &amp; input validation, (2) Architecture &amp; design patterns, (3) Test coverage &amp; edge cases, (4) Performance &amp; N+1 queries, (5) PHP/Laravel best practices and version compatibility. IMPORTANT: When fetching PR artifacts via GitHub CLI, if you encounter a 'Projects Classic' deprecation warning or GraphQL error, catch it and retry using `gh pr view` and `gh pr diff` as fallbacks—do NOT let the script exit early. Each sub-agent should output structured findings as {severity, file, line, finding, suggestion}. After all agents complete, consolidate into a single review with: verdict (approve/request-changes), critical findings, suggestions, and praise for good patterns. Format the final output as a GitHub review comment I can paste directly.</code><button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+          <div class="horizon-title">Parallel Agents for Monorepo Operations</div>
+          <div class="horizon-possible">Your monorepo workflow across lindris-frontend, lindris-backend, and related sub-repos caused repeated friction—wrong branches, submodule confusion, worktree mismanagement, and PR descriptions generated against the wrong repo. Parallel sub-agents could each own a sub-repo context, independently resolve conflicts, create PRs with correct branch targeting, and coordinate merges across your stacked PR chains. This would have prevented the incident where 112 sessions were incorrectly renamed and the multiple worktree/branch mishaps that plagued your sessions.</div>
+          <div class="horizon-tip"><strong>Getting started:</strong> Spawn dedicated Agent sub-tasks for each sub-repo operation, with explicit repo-path context passed to each. Codify your monorepo structure and branch conventions in CLAUDE.md so agents never confuse monorepo root with sub-repo worktrees.</div>
+          <div class="pattern-prompt"><div class="prompt-label">Paste into Claude Code:</div><code>I need coordinated changes across our monorepo. Spawn parallel sub-agents for each task: Agent 1: In lindris-backend/, create a feature branch from the correct base (check existing PR chain first), implement [CHANGES], run tests via Sail. Agent 2: In lindris-frontend/, create a matching feature branch, implement [FRONTEND CHANGES], run tests. Agent 3: Coordinate—once both pass, create draft PRs for each with cross-references, update submodule pointers in the monorepo root, and handle the monorepo commit. CRITICAL RULES: Always verify which repo you&apos;re in before any git operation. Never create worktrees from main when a PR branch exists. PR descriptions must be generated from the sub-repo worktree, not the monorepo root. Report back a unified status when all agents complete.</code><button class="copy-btn" onclick="copyText(this)">Copy</button></div>
         </div>
       
         <div class="horizon-card">
-          <div class="horizon-title">Self-Correcting Feature Implementation with Test-Driven Iteration</div>
-          <div class="horizon-possible">Your 'wrong_approach' friction (59 occurrences) is by far your biggest pain point—Claude jumps to conclusions, proposes premature solutions, or fixes the wrong thing. This can be structurally eliminated by enforcing an investigate-first, test-driven protocol where Claude must prove understanding of your architecture before writing a single line of production code, then iterate against tests autonomously until everything passes.</div>
-          <div class="horizon-tip"><strong>Getting started:</strong> Encode an investigation-first protocol in your CLAUDE.md and use TodoWrite (already used 221 times) to force Claude to plan before acting. Combine with Bash test loops for autonomous red-green-refactor cycles across your MySQL, ClickHouse, and PHP stack.</div>
-          <div class="pattern-prompt"><div class="prompt-label">Paste into Claude Code:</div><code>Implement GitHub issue [URL]. You MUST follow this phased protocol—do not skip phases:
-
-**Phase 1 - Investigate (no code changes):** Read the issue thoroughly. Use Grep and Read to map every file, function, and database table involved. Write a TodoWrite checklist of your understanding: what the current behavior is, what causes it, what the correct behavior should be, and which files need changes. STOP and show me this checklist before proceeding.
-
-**Phase 2 - Test First:** Write failing tests that assert the correct behavior. Run them to confirm they fail for the right reason. If you need Docker services (MySQL, ClickHouse), use the existing docker-compose setup.
-
-**Phase 3 - Implement:** Make the minimal code changes to pass the tests. Follow existing codebase patterns exactly—check for Yoda conditions, markTestSkipped conventions, PHP version compatibility (we support PHP 5.6+ in some modules). Run the full test suite.
-
-**Phase 4 - Iterate:** If any tests fail, analyze the failure, fix, and re-run. Loop up to 7 times. Do not make excessive or unrelated changes.
-
-**Phase 5 - Deliver:** Create a branch, commit with conventional message, push, and create a PR with a description covering: what changed, why, how to test, and any migration notes. If pre-push hooks fail (e.g., phplint), fix the lint issues before retrying.</code><button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+          <div class="horizon-title">Test-Driven Debugging with Iterative Verification</div>
+          <div class="horizon-possible">Your data shows 34 debugging sessions and 48 buggy-code friction events, with standout successes like improving regression detection from 2/9 to 5/9 failing tests and catching a real bug during manual CAPTCHA testing. An autonomous debug loop could take a failing test or Sentry error, form a hypothesis, write a regression test that reproduces the failure, implement the fix, verify the test goes green, then expand to related edge cases—all without human steering. The silent-death import worker diagnosis and the API timeout investigation both stalled due to rabbit-holing; a structured test-first approach with automated verification gates would keep the agent on track.</div>
+          <div class="horizon-tip"><strong>Getting started:</strong> Combine Claude Code&apos;s Bash tool (11,363 invocations shows heavy CLI usage) with a structured TodoWrite plan that enforces: reproduce → test → fix → verify → expand. Use the Agent tool to spawn a verification sub-agent that independently confirms the fix.</div>
+          <div class="pattern-prompt"><div class="prompt-label">Paste into Claude Code:</div><code>Debug this issue: [DESCRIBE BUG OR PASTE SENTRY ERROR]. Follow this autonomous loop strictly: 1) REPRODUCE: Find or write a minimal test that demonstrates the failure (run inside Sail). Confirm it fails. If you can&apos;t reproduce it, investigate logs and database state before hypothesizing. 2) HYPOTHESIZE: Write your root-cause theory in a TodoWrite entry. 3) REGRESSION TEST: Write a focused test that will fail with the bug present and pass with the fix. Run it—confirm it fails. 4) FIX: Implement the minimal fix. Do NOT make excessive or unrelated changes. 5) VERIFY: Run the regression test—confirm it passes. Run the full test suite—confirm nothing else broke. 6) EXPAND: Identify 2-3 related edge cases, write tests for them, fix any that fail. 7) REPORT: Summarize root cause, fix, test coverage added, and confidence level. Do not go down rabbit holes investigating unrelated systems. If your first hypothesis doesn&apos;t pan out after 10 minutes of investigation, step back and list the top 3 alternative theories before continuing.</code><button class="copy-btn" onclick="copyText(this)">Copy</button></div>
         </div>
       
     </div>
@@ -891,8 +900,8 @@ claude -p &quot;Review the current branch changes against main. Focus on PHP com
 
     
     <div class="fun-ending">
-      <div class="fun-headline">"Claude kept trying to review a GitHub issue thinking it was a PR, like showing up to the wrong party and insisting you were invited"</div>
-      <div class="fun-detail">During a PR review session, Claude was handed an issue URL instead of a PR link, confidently began its review process, then had to be redirected to find the actual PR #467 — a small moment of AI overconfidence meeting reality</div>
+      <div class="fun-headline">"Claude honestly admitted its own test suggestions were &quot;vacuous&quot; when the user questioned them during a PR review"</div>
+      <div class="fun-detail">During a PR review continuation for PR #520, when the user pushed back on Claude&apos;s test recommendations, Claude candidly acknowledged that its suggestions had no real substance — a rare moment of AI self-awareness that apparently earned it a &apos;mostly_achieved&apos; rating anyway.</div>
     </div>
     
 
@@ -938,7 +947,7 @@ claude -p &quot;Review the current branch changes against main. Focus on PHP com
       }
     }
     // Timezone selector for time of day chart (data is from our own analytics, not user input)
-    const rawHourCounts = {"8":7,"9":29,"10":89,"11":98,"12":58,"13":84,"14":84,"15":102,"16":76,"17":54,"18":10,"19":48,"20":17,"21":23,"22":10,"23":2};
+    const rawHourCounts = {"0":94,"1":34,"8":29,"9":80,"10":255,"11":328,"12":247,"13":239,"14":335,"15":386,"16":376,"17":220,"18":142,"19":114,"20":135,"21":99,"22":99,"23":100};
     function updateHourHistogram(offsetFromPT) {
       const periods = [
         { label: "Morning (6-12)", range: [6,7,8,9,10,11] },
@@ -991,8 +1000,9 @@ claude -p &quot;Review the current branch changes against main. Focus on PHP com
       }
     });
     document.getElementById('custom-offset').addEventListener('change', function() {
-      const offset = parseInt(this.value) + 8;
-      updateHourHistogram(offset);
+      const parsed = parseInt(this.value, 10);
+      if (isNaN(parsed)) return;
+      updateHourHistogram(parsed + 8);
     });
   </script>
 </body>
